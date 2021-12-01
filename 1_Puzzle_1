@@ -1,0 +1,25 @@
+# check working directory
+getwd()
+# set working directory
+setwd("C:/Adventofcode/1")
+
+# load data
+mydata = read.table("data/input_data.txt")
+
+# create second data set and remove first row
+data_min = mydata
+data_min = data_min[-c(1),]
+
+# check if it worked
+head(data_min)
+head(mydata)
+
+# difference between the data sets
+diff <- data_min - mydata
+
+# show which are above zero
+ab0 <- which(diff > 0)
+head(ab0)
+
+length(ab0) #=answer
+
