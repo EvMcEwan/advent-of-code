@@ -1,0 +1,30 @@
+# clear working environment
+rm(list = ls())
+
+# check working directory
+getwd()
+# set working directory
+setwd("C:/Adventofcode/1")
+
+# load package zoo
+install.packages("zoo")
+library(zoo)
+
+# load data
+mydata = read.table("data/input_data.txt")
+data = mydata
+
+# create object with sum of rolling window of 3
+data = rollapply(data, 3, sum)
+
+# remove first row
+data_min = data[-c(1),]
+
+# fill the missing position after the last element
+data_min <- append(data_min, 0)
+
+# make object showing all values in data_min that are greater than mydata
+grtt = data_min > data
+
+# show number of TRUE values = answer
+sum(grtt, na.rm = TRUE) #=answer
